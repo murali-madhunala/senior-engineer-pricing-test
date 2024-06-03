@@ -1,0 +1,27 @@
+require:
+  - rubocop-factory_bot
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-graphql
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/*'
+    - 'db/**/*'
+    - vendor/bundle/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - 'app/admin/**/*'
+    - 'Gemfile'
+    - 'config/environments/development.rb'
+    - 'config/environments/production.rb'
+
+Layout/LineLength:
+  Exclude:
+    - 'config/initializers/**/*'
+    
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
