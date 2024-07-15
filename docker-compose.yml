@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+    networks:
+      - butternut-services
+    ports:
+      - 5432:5432
+  butternut:
+    image: butternut-test:1.0
+    build:
+      context: .
+      target: development
+    volumes:
+      - ${PWD}:/rails
+    ports:
+      - 3000:3000
+    networks:
+      - butternut-services
+    environment:
+      RAILS_ENV: development
+      DB_HOST: db
+      DB_USERNAME: postgres
+      DB_PASSWORD: password
+    command: ["bundle", "exec", "puma"]
+    depends_on:
+      - db
+
+volumes:
+  db-volume:
+
+networks:
+  butternut-services:
+    name: butternut-services
