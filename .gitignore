@@ -1,0 +1,13 @@
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore vim temporary files
+*.sw*
+/coverage
+tags
+
+# Ignore Mac specific files
+.DS_Store
