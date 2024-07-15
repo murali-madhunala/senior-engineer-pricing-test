@@ -5,5 +5,6 @@ FactoryBot.define do
     order
     product
     quantity { 1 }
+    price_in_cents { 1000 }
   end
 end

@@ -101,3 +101,15 @@ RSpec.configure do |config|
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
 end
+
+RSpec.shared_examples 'successful request' do
+  it 'is successful' do
+    expect(response).to be_successful
+  end
+end
+
+RSpec.shared_examples 'unsuccessful request' do
+  it 'is not successful with invalid attributes' do
+    expect(response).not_to be_successful
+  end
+end

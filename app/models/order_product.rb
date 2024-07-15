@@ -10,7 +10,9 @@ class OrderProduct < ApplicationRecord
   belongs_to :product
 
   # validations
-  validates :quantity, presence: true
+  validates :quantity, numericality: { only_integer: true, greater_than: 0 }, presence: true
+
+  before_create :set_price_in_cents
 
   #
   # Calculates the subtotal for the given order product
@@ -18,7 +20,15 @@ class OrderProduct < ApplicationRecord
   # @return [Integer] the subtotal
   #
   def subtotal
-    quantity * product.price_in_cents
+    quantity * price_in_cents
+  end
+
+  #
+  # Setting price_in_cents before creating the record by taking current Product price.
+  # This cannot be changed once the record is created
+  #
+  def set_price_in_cents
+    self.price_in_cents = product.price_in_cents
   end
 
   # class methods

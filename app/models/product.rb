@@ -9,7 +9,7 @@ class Product < ApplicationRecord
 
   # validations
   validates :name, presence: true
-  validates :price_in_cents, presence: true
+  validates :price_in_cents, numericality: { only_integer: true, greater_than: 0 }, presence: true
 
   # class methods
   def self.ransackable_attributes(_auth_object = nil)
