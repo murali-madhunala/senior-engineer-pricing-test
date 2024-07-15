@@ -53,4 +53,5 @@ Please submit your solution via Greenhouse.
 
 ## Your Explanation
 
-Please write here a short explanation of your architectural design choices.
+I added the price_in_cents column in the order_products table to ensure that the price is stored and is not effected by the changes in the products price. I added a before_create callback in the order_products model to set the current price when the product is being added to the order. 
+Added a migration to add current price of the product to all the existing order products
